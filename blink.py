@@ -1,12 +1,20 @@
+import argparse
 import RPi.GPIO as GPIO
 import time
+# make_server is used to create this simple python webserver
+from wsgiref.simple_server import make_server
+
+
+parser = argparse.ArgumentParser(description='Blinking LED')
+
+parser.add_argument('blink')
+
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(18,GPIO.OUT)
 
 
-# make_server is used to create this simple python webserver
-from wsgiref.simple_server import make_server
 
 # Function that is ran when a http request comes in
 def simple_app(env, start_response):
